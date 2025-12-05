@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Puzzelpagina</title>
+<style>
+ body { font-family: Arial; padding: 20px; }
+ .puzzle { margin-bottom: 60px; padding: 15px; border: 2px solid #ccc; border-radius: 10px; }
+ .buttons { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+ button { padding: 6px 10px; cursor: pointer; }
+ .result { margin-top: 10px; font-weight: bold; color: green; }
+ textarea { width: 100%; height: 120px; }
+ input { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<h2>Elke puzzel geeft 1 letter. Hussel alle 7 letters om het woord te vormen.</h2>
+
+<!-- PUZZEL 1 -->
+<div class="puzzle" id="p1">
+<h3>Puzzel 1 – Raad hoe lang slakken kunnen slapen</h3>
+<p>Hint: Slakken kunnen dus best lang slapen. Klik het juiste vakje (1–500).</p>
+<div class="buttons" id="p1btns"></div>
+<div class="result" id="result1"></div>
+</div>
+
+<!-- PUZZEL 2 -->
+<div class="puzzle" id="p2">
+<h3>Puzzel 2 – Oud-Germaans 'honderd'</h3>
+<p>Het woord 'honderd' is gebaseerd op de naam van welk getal uit een oud Germaanse taal?</p>
+<div class="buttons" id="p2btns"></div>
+<div class="result" id="result2"></div>
+</div>
+
+<!-- PUZZEL 3 -->
+<div class="puzzle" id="p3">
+<h3>Puzzel 3 – Waar Celsius gelijk is aan Fahrenheit</h3>
+<p>Kies het juiste getal van -50 t/m +50.</p>
+<div class="buttons" id="p3btns"></div>
+<div class="result" id="result3"></div>
+</div>
+
+<!-- PUZZEL 4 – Lange rebus -->
+<div class="puzzle" id="p4">
+<h3>Puzzel 4 – Los de rebus op</h3>
+<p>Vul het woord in dat deze hele rebus vormt:</p>
+<p>📦 + 👁️ + 🐝 + 🔔 + 🌲 + 🐍 + 🚪 + 🔑 + 🦵 + 🐜 + 🍞 + 🧊 + 🐦 + 🎒 + 🕳️ + 🧱 + 🐟 + 🎩 + 📚 + 🌧️</p>
+<input id="rebusInput" placeholder="Rebus antwoord..." />
+<button onclick="checkRebus()">Controleer</button>
+<div class="result" id="result4"></div>
+</div>
+
+<!-- PUZZEL 5 – Geef de vijf weeskinderen namen -->
+<div class="puzzle" id="p5">
+<h3>Puzzel 5 – Geef de vijf weeskinderen namen</h3>
+<div>
+<p>👦 <input class="kid" placeholder="Naam kind 1" /></p>
+<p>👧 <input class="kid" placeholder="Naam kind 2" /></p>
+<p>🧒 <input class="kid" placeholder="Naam kind 3" /></p>
+<p>👶 <input class="kid" placeholder="Naam kind 4" /></p>
+<p>🧑 <input class="kid" placeholder="Naam kind 5" /></p>
+</div>
+<button onclick="checkKids()">Bevestig namen</button>
+<div class="result" id="result5"></div>
+</div>
+
+<!-- PUZZEL 6 – Lange wiskundesom maar antwoord is simpel -->
+<div class="puzzle" id="p6">
+<h3>Puzzel 6 – Een extreem lange som</h3>
+<p><b>Het antwoord is simpel.</b></p>
+<p>Bereken dit:</p>
+<p>(293847 × 928374) − (734 × 928374 × 55) + 123456789 − 98765432 + 112233445566 × 33 − 192837465 + (923874923 × 123123)</p>
+<input id="mathInput" placeholder="Antwoord..." />
+<button onclick="checkMath()">Controleer</button>
+<div class="result" id="result6"></div>
+</div>
+
+<!-- PUZZEL 7 – Lofrede schrijven -->
+<div class="puzzle" id="p7">
+<h3>Puzzel 7 – Een wees is overleden 😢</h3>
+<p>Schrijf een lofrede van minimaal 100 tekens voor het overleden weesje.</p>
+<textarea id="tribute"></textarea><br>
+<button onclick="checkTribute()">Controleer</button>
+<div class="result" id="result7"></div>
+</div>
+
+<script>
+// Puzzle 1
+for(let i=1;i<=500;i++){ let b=document.createElement("button"); b.textContent=i; b.onclick=()=>{ if(i===496) result1.textContent="Letter: U"; }; p1btns.appendChild(b);} 
+// Puzzle 2
+for(let i=1;i<=150;i++){ let b=document.createElement("button"); b.textContent=i; b.onclick=()=>{ if(i===120) result2.textContent="Letter: P"; }; p2btns.appendChild(b);} 
+// Puzzle 3
+for(let i=-50;i<=50;i++){ let b=document.createElement("button"); b.textContent=i; b.onclick=()=>{ if(i===-40) result3.textContent="Letter: A"; }; p3btns.appendChild(b);} 
+// Puzzle 4
+function checkRebus(){ let w=document.getElementById("rebusInput").value.trim().toLowerCase(); if(w.length>3) result4.textContent="Letter: B"; }
+// Puzzle 5
+function checkKids(){ let kids=[...document.querySelectorAll('.kid')]; if(kids.every(k=>k.value.trim().length>0)) result5.textContent="Letter: K"; }
+// Puzzle 6
+function checkMath(){ if(document.getElementById('mathInput').value.trim().toLowerCase()==='simpel') result6.textContent="Letter: I"; }
+// Puzzle 7
+function checkTribute(){ let t=document.getElementById('tribute').value.trim(); if(t.length>=100) result7.textContent="Letter: D"; }
+</script>
+
+<footer>
+<p>Groetjes van de HTML Piet</p>
+</footer>
+</body>
+</html>
